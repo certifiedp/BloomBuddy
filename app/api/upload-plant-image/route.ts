@@ -68,20 +68,29 @@ export async function POST(request: NextRequest) {
       result.pHReading !== undefined &&
       result.moistureReading !== undefined &&
       result.lightRating >= 0 &&
-      result.lightRating <= 10 &&
-      result.pHReading >= 0 &&
-      result.pHReading <= 14 &&
-      result.moistureReading >= 0 &&
-      result.moistureReading <= 5
+      result.lightRating <= 10
     ) {
+      const updateData: {
+        light: number
+        description: string
+        moisture?: number
+        ph?: number
+      } = {
+        light: result.lightRating,
+        description: result.plantState,
+      }
+
+      if (result.moistureReading > 0 && result.moistureReading <= 4) {
+        updateData.moisture = result.moistureReading
+      }
+
+      if (result.pHReading > 0 && result.pHReading <= 14) {
+        updateData.ph = result.pHReading
+      }
+
       const { data, error } = await supabase
         .from("plant")
-        .update({
-          moisture: result.moistureReading,
-          ph: result.pHReading,
-          light: result.lightRating,
-          description: result.plantState,
-        })
+        .update(updateData)
         .eq("id", "48890957-933e-45cf-888f-74096f277ebd")
 
       if (error) {
