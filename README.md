@@ -23,7 +23,7 @@ https://bloom-buddy.vercel.app/
 - Supabase
 - OpenAI API
 - Hume AI Voice API
-- Radix UI
+- Shadcn UI
 
 ## Getting Started
 
