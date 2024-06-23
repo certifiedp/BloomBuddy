@@ -63,22 +63,37 @@ export async function POST(request: NextRequest) {
 
     console.log("Analysis result:", result)
 
-    // Update the plant in Supabase
-    const { data, error } = await supabase
-      .from("plant")
-      .update({
-        moisture: result.moistureReading,
-        ph: result.pHReading,
-        light: result.lightRating,
-        description: result.plantState,
-      })
-      .eq("id", "48890957-933e-45cf-888f-74096f277ebd")
+    if (
+      result.lightRating !== undefined &&
+      result.pHReading !== undefined &&
+      result.moistureReading !== undefined &&
+      result.lightRating >= 0 &&
+      result.lightRating <= 10 &&
+      result.pHReading >= 0 &&
+      result.pHReading <= 14 &&
+      result.moistureReading >= 0 &&
+      result.moistureReading <= 5
+    ) {
+      const { data, error } = await supabase
+        .from("plant")
+        .update({
+          moisture: result.moistureReading,
+          ph: result.pHReading,
+          light: result.lightRating,
+          description: result.plantState,
+        })
+        .eq("id", "48890957-933e-45cf-888f-74096f277ebd")
 
-    if (error) {
-      console.error("Error updating plant in Supabase:", error)
-      return NextResponse.json(
-        { error: "Error updating plant data" },
-        { status: 500 }
+      if (error) {
+        console.error("Error updating plant in Supabase:", error)
+        return NextResponse.json(
+          { error: "Error updating plant data" },
+          { status: 500 }
+        )
+      }
+    } else {
+      console.log(
+        "Skipping Supabase update due to invalid or missing sensor readings"
       )
     }
 
