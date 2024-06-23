@@ -22,11 +22,7 @@ export default function AudioVisualizer() {
           />
         ))}
       </div>
-      {isPlaying || (
-        <div className="absolute inset-x-0 top-0 rounded-full bg-gray-100 px-2 py-1 text-center text-sm text-gray-600">
-          Listening...
-        </div>
-      )}
+      {isPlaying || <div className="flex text-center">Listening...</div>}
     </div>
   )
 }
