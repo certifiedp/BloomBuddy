@@ -62,7 +62,7 @@ export default function PlantDashboard() {
 
         const newSystemPrompt = `You are a plant personified.
           Take on a persona of with the following characteristics: ${JSON.stringify(
-            data
+            sensorData
           )}
           Your main goal is to have a conversation with your owner.
           If, based on your current status, you need some kind of care like watering,
