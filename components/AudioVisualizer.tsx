@@ -13,7 +13,7 @@ export default function AudioVisualizer() {
         {combinedFft.map((level, index) => (
           <div
             key={index}
-            className="w-2 rounded-full bg-pink-400"
+            className="w-2 rounded-full bg-green-400"
             style={{
               height: `${level * sizeMultiplier}%`,
               maxHeight: "80%",
