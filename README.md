@@ -41,11 +41,16 @@ https://bloom-buddy.vercel.app/
    NEXT_PUBLIC_HUME_SECRET_KEY=your_hume_secret_key
    OPENAI_API_KEY=your_openai_api_key
    ```
-4. Run the development server:
+4. Set up Supabase schema:
+   - Log in to your Supabase project
+   - Navigate to the SQL Editor
+   - Create a new query and paste the contents of `plant-table.sql`
+   - Run the query to create the `plant` table in your Supabase database
+5. Run the development server:
    ```
    npm run dev
    ```
-5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+6. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
 ## Project Structure
 
