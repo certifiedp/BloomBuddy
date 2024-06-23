@@ -3,7 +3,7 @@
 import { useVoice } from "@humeai/voice-react"
 
 export default function AudioVisualizer() {
-  const { fft, micFft, isPlaying } = useVoice()
+  const { fft, micFft, isMuted } = useVoice()
   const combinedFft = [...fft, ...micFft].slice(0, 20)
   const sizeMultiplier = 50
 
@@ -22,7 +22,7 @@ export default function AudioVisualizer() {
           />
         ))}
       </div>
-      {isPlaying || <div className="flex text-center">Listening...</div>}
+      {isMuted && <div className="flex text-center">Muted</div>}
     </div>
   )
 }
