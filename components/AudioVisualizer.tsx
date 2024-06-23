@@ -1,7 +1,6 @@
 "use client"
 
 import { useVoice } from "@humeai/voice-react"
-import { LoaderCircle } from "lucide-react"
 
 export default function AudioVisualizer() {
   const { fft, micFft, isListening } = useVoice()
@@ -25,7 +24,7 @@ export default function AudioVisualizer() {
       </div>
       {isListening && (
         <div className="absolute inset-x-0 top-0 rounded-full bg-gray-100 px-2 py-1 text-center text-sm text-gray-600">
-          <LoaderCircle className="ml-1 inline-block size-4 animate-spin" />
+          Listening...
         </div>
       )}
     </div>
